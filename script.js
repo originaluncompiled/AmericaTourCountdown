@@ -4,6 +4,8 @@ const dayText = document.getElementById("days");
 const hourText = document.getElementById("hours");
 const minText = document.getElementById("minutes");
 const secText = document.getElementById("seconds");
+let timeText = [monthText, weekText, dayText, hourText, minText, secText];
+let timeValues = [];
 
 // Set the date we're counting down to
 const countDownDate = new Date("Sept 21, 2024 00:00:00").getTime();
@@ -18,24 +20,24 @@ var x = setInterval(function() {
     var difference = countDownDate - now;
 
     // Time calculations
-    var months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
-    var weeks = Math.floor((difference % (1000 * 60 * 60 * 24 * 7 * 30)) / (1000 * 60 * 60 * 24 * 7));
+    var months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30.325));
+    var weeks = Math.floor((difference % (1000 * 60 * 60 * 24 * 30.325)) / (1000 * 60 * 60 * 24 * 7));
     var days = Math.floor((difference % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
     var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-    // Display the result
-    monthText.textContent = addZeroBefore(months);
-    weekText.textContent = addZeroBefore(weeks);
-    dayText.textContent = addZeroBefore(days);
-    hourText.textContent = addZeroBefore(hours);
-    minText.textContent = addZeroBefore(minutes);
-    secText.textContent = addZeroBefore(seconds);
+    timeValues = [months, weeks, days, hours, minutes, seconds];
 
-    // If the count down is finished, return
-    if (difference < 0) {
-        return
+    // Display the result
+    if (difference > 0) {
+        timeText.forEach((textUnit, index) => {
+            textUnit.textContent = addZeroBefore(timeValues[index]);
+        });
+    } else if (difference <= 0) {
+        timeText.forEach((textUnit) => {
+            textUnit.textContent = "00";
+        });
     }
 }, 1000);
 
