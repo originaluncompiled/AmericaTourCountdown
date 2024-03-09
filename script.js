@@ -15,6 +15,7 @@ const minDesc = document.getElementById("unitMinutes");
 const secDesc = document.getElementById("unitSeconds");
 let timeDesc = [monthDesc, weekDesc, dayDesc, hourDesc, minDesc, secDesc];
 let descIfSingular = ['Maand', 'Week', 'Dag', 'Uur', 'Minuut', 'Sekond'];
+let descIfPlural = ['Maande', 'Weke', 'Dae', 'Ure', 'Minute', 'Sekondes'];
 
 // Set the date we're counting down to
 const countDownDate = new Date("Sept 17, 2024 00:00:00").getTime();
@@ -53,7 +54,9 @@ var x = setInterval(function() {
     timeDesc.forEach((unit, index) => {
         if (timeText[index].textContent == "01") {
             unit.textContent = descIfSingular[index];
-        };
+        } else if (timeText[index].textContent != "01") {
+            unit.textConntent = descIfPlural[index];
+        }
     });
 }, 1000);
 
