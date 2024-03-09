@@ -37,13 +37,6 @@ var x = setInterval(function() {
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
     timeValues = [months, weeks, days, hours, minutes, seconds];
-
-    // Changes time unit to singular if it's value is 1
-    timeDesc.forEach((timeUnit, index) => {
-        if (timeUnit.textContent == 1) {
-            timeUnit.textContent = descIfSingular[index];
-        }
-    });
     
     // Display the result
     if (difference > 0) {
@@ -55,6 +48,13 @@ var x = setInterval(function() {
             textUnit.textContent = "00";
         });
     }
+    
+    // Changes time unit to singular if it's value is 1
+    timeDesc.forEach((unit, index) => {
+        if (unit.textContent == "01") {
+            unit.textContent = descIfSingular[index];
+        };
+    });
 }, 1000);
 
 const addZeroBefore = (timeUnit) => {
