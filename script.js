@@ -55,7 +55,7 @@ var x = setInterval(function() {
         if (timeText[index].textContent == "01") {
             unit.textContent = descIfSingular[index];
         } else {
-            unit.textConntent = descIfPlural[index];
+            unit.textContent = descIfPlural[index];
         }
     });
 }, 1000);
