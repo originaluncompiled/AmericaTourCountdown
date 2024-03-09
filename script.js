@@ -51,7 +51,7 @@ var x = setInterval(function() {
     
     // Changes time unit to singular if it's value is 1
     timeDesc.forEach((unit, index) => {
-        if (unit.textContent == "01") {
+        if (timeText.textContent == "01") {
             unit.textContent = descIfSingular[index];
         };
     });
