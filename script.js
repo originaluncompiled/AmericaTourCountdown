@@ -7,6 +7,15 @@ const secText = document.getElementById("seconds");
 let timeText = [monthText, weekText, dayText, hourText, minText, secText];
 let timeValues = [];
 
+const monthDesc = document.getElementById("unitMonths");
+const weekDesc = document.getElementById("unitWeeks");
+const dayDesc = document.getElementById("unitDays");
+const hourDesc = document.getElementById("unitHours");
+const minDesc = document.getElementById("unitMinutes");
+const secDesc = document.getElementById("unitSeconds");
+let timeDesc = [monthDesc, weekDesc, dayDesc, hourDesc, minDesc, secDesc];
+let descIfSingular = ['Maand', 'Week', 'Dag', 'Uur', 'Minuut', 'Sekond'];
+
 // Set the date we're counting down to
 const countDownDate = new Date("Sept 17, 2024 00:00:00").getTime();
 
