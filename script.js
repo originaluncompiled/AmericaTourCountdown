@@ -38,6 +38,13 @@ var x = setInterval(function() {
 
     timeValues = [months, weeks, days, hours, minutes, seconds];
 
+    // Changes time unit to singular if it's value is 1
+    timeDesc.forEach((timeUnit, index) => {
+        if (timeUnit.textContent == 1) {
+            timeUnit.textContent = descIfSingular[index];
+        }
+    });
+    
     // Display the result
     if (difference > 0) {
         timeText.forEach((textUnit, index) => {
