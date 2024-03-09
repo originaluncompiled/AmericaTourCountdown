@@ -54,7 +54,7 @@ var x = setInterval(function() {
     timeDesc.forEach((unit, index) => {
         if (timeText[index].textContent == "01") {
             unit.textContent = descIfSingular[index];
-        } else if (timeText[index].textContent != "01") {
+        } else {
             unit.textConntent = descIfPlural[index];
         }
     });
