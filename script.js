@@ -5,17 +5,14 @@ const hourText = document.getElementById("hours");
 const minText = document.getElementById("minutes");
 const secText = document.getElementById("seconds");
 let timeText = [monthText, weekText, dayText, hourText, minText, secText];
-let timeValues = [];
+const monthTotal = document.getElementById("monthsTotal");
+const weekTotal = document.getElementById("weekTotal");
+const dayTotal = document.getElementById("dayTotal");
+const hourTotal = document.getElementById("hourTotal");
+const minTotal = document.getElementById("minTotal");
+const secTotal = document.getElementById("secTotal");
 
-const monthDesc = document.getElementById("unitMonths");
-const weekDesc = document.getElementById("unitWeeks");
-const dayDesc = document.getElementById("unitDays");
-const hourDesc = document.getElementById("unitHours");
-const minDesc = document.getElementById("unitMinutes");
-const secDesc = document.getElementById("unitSeconds");
-let timeDesc = [monthDesc, weekDesc, dayDesc, hourDesc, minDesc, secDesc];
-let descIfSingular = ['Maand', 'Week', 'Dag', 'Uur', 'Minuut', 'Sekond'];
-let descIfPlural = ['Maande', 'Weke', 'Dae', 'Ure', 'Minute', 'Sekondes'];
+let timeValues = [];
 
 // Set the date we're counting down to
 const countDownDate = new Date("Sept 17, 2024 00:00:00").getTime();
@@ -29,6 +26,13 @@ var x = setInterval(function() {
     // Find the difference between now and the count down date
     var difference = countDownDate - now;
 
+    monthTotal.textContent = `Total: ${Math.floor(difference / (1000 * 60 * 60 * 24 * 30.325))}`;
+    weekTotal.textContent = `Total: ${Math.floor(difference / (1000 * 60 * 60 * 24 * 7))}`;
+    dayTotal.textContent = `Total: ${Math.floor(difference / (1000 * 60 * 60 * 24))}`;
+    hourTotal.textContent = `Total: ${Math.floor(difference / (1000 * 60 * 60))}`;
+    minTotal.textContent = `Total: ${Math.floor(difference / (1000 * 60))}`;
+    secTotal.textContent = `Total: ${Math.floor(difference / (1000))}`;
+
     // Time calculations
     var months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30.325));
     var weeks = Math.floor((difference % (1000 * 60 * 60 * 24 * 30.325)) / (1000 * 60 * 60 * 24 * 7));
@@ -38,7 +42,7 @@ var x = setInterval(function() {
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
     timeValues = [months, weeks, days, hours, minutes, seconds];
-    
+
     // Display the result
     if (difference > 0) {
         timeText.forEach((textUnit, index) => {
@@ -49,15 +53,6 @@ var x = setInterval(function() {
             textUnit.textContent = "00";
         });
     }
-    
-    // Changes time unit to singular if it's value is 1
-    timeDesc.forEach((unit, index) => {
-        if (timeText[index].textContent == "01") {
-            unit.textContent = descIfSingular[index];
-        } else {
-            unit.textContent = descIfPlural[index];
-        }
-    });
 }, 1000);
 
 const addZeroBefore = (timeUnit) => {
