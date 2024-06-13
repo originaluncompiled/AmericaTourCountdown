@@ -16,6 +16,16 @@ const minTotal = document.getElementById("minTotal");
 const secTotal = document.getElementById("secTotal");
 let totalTimeText = [monthTotal, weekTotal, dayTotal, hourTotal, minTotal, secTotal];
 
+// Time Unit Text
+const tuMonths = document.getElementById("Maand");
+const tuWeeks = document.getElementById("Week");
+const tuDays = document.getElementById("Dag");
+const tuHours = document.getElementById("Uur");
+const tuMins = document.getElementById("Minuut");
+const tuSecs = document.getElementById("Sekond");
+let timeUnitText = [tuMonths, tuWeeks, tuDays, tuHours, tuMins, tuSecs];
+let pluralTimeUnits = ['Maande', 'Weke', 'Dae', 'Ure', 'Minute', 'Sekondes'];
+
 // Amount of time in certain units
 const monthMillisec = (1000 * 60 * 60 * 24 * 30.325);
 const weekMillisec = (1000 * 60 * 60 * 24 * 7);
@@ -47,6 +57,14 @@ const x = setInterval(function() {
     let seconds = Math.floor((difference % minMillisec) / secMillisec);
 
     const timeValues = [months, weeks, days, hours, minutes, seconds];
+
+    timeValues.map((value, index) => {
+        if (value === 1) {
+            timeUnitText[index].textContent = timeUnitText[index].id;
+        } else {
+            timeUnitText[index].textContent = pluralTimeUnits[index];
+        }
+    })
 
     // Display the result
     if (difference > 0) {
